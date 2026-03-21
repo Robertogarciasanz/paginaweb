@@ -72,7 +72,7 @@ textarea{resize:vertical;min-height:72px;}
 
 table.ptable{
   width:100%;
-  min-width:680px;        /* ← evita que se comprima */
+  min-width:600px;
   border-collapse:collapse;
   font-size:13.5px;
 }
@@ -104,13 +104,13 @@ table.ptable tbody td{
 }
 
 /* columnas específicas */
-.col-cat  { width:110px; }
-.col-desc { min-width:220px; }
-.col-qty  { width:90px; }
-.col-ud   { width:64px; }
-.col-prc  { width:100px; }
-.col-tot  { width:100px; }
-.col-del  { width:38px; text-align:center; }
+.col-cat  { width:108px; white-space:nowrap; }
+.col-desc { width:99%;   }          /* ocupa TODO el espacio sobrante */
+.col-qty  { width:96px;  white-space:nowrap; }
+.col-ud   { width:60px;  white-space:nowrap; }
+.col-prc  { width:108px; white-space:nowrap; }
+.col-tot  { width:108px; white-space:nowrap; }
+.col-del  { width:36px;  text-align:center; white-space:nowrap; }
 
 table.ptable tbody td input{
   padding:6px 8px;
@@ -118,7 +118,10 @@ table.ptable tbody td input{
   border:1.5px solid var(--border);
   border-radius:5px;
   width:100%;
+  min-width:0;
   background:#fff;
+  overflow:hidden;
+  text-overflow:ellipsis;
 }
 table.ptable tbody td input:focus{
   border-color:var(--accent);outline:none;
