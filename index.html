@@ -436,6 +436,44 @@ header {
 }
 .video-caption::before { content: '▶'; color: #c8410a; font-size: .7rem; }
 
+/* Tarjetas de foto */
+.foto-card {
+  width: 100%;
+  max-width: 340px;
+  background: #2a2a2a;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.08);
+  transition: transform .2s, box-shadow .2s;
+}
+.foto-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(0,0,0,.4);
+}
+.foto-thumb {
+  width: 100%;
+  aspect-ratio: 16/10;
+  overflow: hidden;
+}
+.foto-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform .3s;
+}
+.foto-card:hover .foto-thumb img { transform: scale(1.04); }
+.foto-caption {
+  padding: 14px 18px;
+  font-size: .85rem;
+  color: rgba(255,255,255,.6);
+  border-top: 1px solid rgba(255,255,255,.06);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.foto-caption::before { content: '📷'; font-size: .8rem; }
+
 /* Lightbox */
 #video-lightbox {
   display: none;
@@ -901,6 +939,30 @@ footer {
           <div class="play-btn">▶</div>
         </div>
         <div class="video-caption">Trabajo de excavación — Tudela de Duero</div>
+      </div>
+
+      <!-- Foto 1: Construcción piscina -->
+      <div class="foto-card">
+        <div class="foto-thumb">
+          <img src="obra1.png" alt="Excavación para construcción de piscina">
+        </div>
+        <div class="foto-caption">Excavación para construcción de piscina</div>
+      </div>
+
+      <!-- Foto 2: Miniexcavadora en obra -->
+      <div class="foto-card">
+        <div class="foto-thumb">
+          <img src="obra2.png" alt="Trabajos de excavación con miniexcavadora Yanmar">
+        </div>
+        <div class="foto-caption">Trabajos de excavación — Miniexcavadora Yanmar</div>
+      </div>
+
+      <!-- Foto 3: Retroexcavadora JCB en calle -->
+      <div class="foto-card">
+        <div class="foto-thumb">
+          <img src="obra3.png" alt="Excavación de zanjas en vía urbana con JCB">
+        </div>
+        <div class="foto-caption">Excavación de zanjas en vía urbana — JCB</div>
       </div>
 
     </div>
