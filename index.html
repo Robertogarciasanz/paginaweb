@@ -267,15 +267,17 @@ header {
 /* Slider arrows */
 .slider-arrow {
   position:absolute; top:50%; transform:translateY(-50%);
-  background:rgba(0,0,0,.35); border:none; color:#fff;
-  font-size:1.4rem; width:40px; height:40px;
+  background:rgba(200,65,10,.75); border:none; color:#fff;
+  font-size:1.8rem; width:52px; height:52px;
   border-radius:50%; cursor:pointer; z-index:10;
   display:flex; align-items:center; justify-content:center;
   transition:background .2s;
+  -webkit-tap-highlight-color: transparent;
 }
-.slider-arrow:hover { background:rgba(200,65,10,.8); }
-.slider-prev { left:16px; }
-.slider-next { right:16px; }
+.slider-arrow:hover,
+.slider-arrow:active { background:rgba(200,65,10,1); }
+.slider-prev { left:12px; }
+.slider-next { right:12px; }
 
 /* ─────────────────────────────────────────
    SECCIÓN "¿PREPARADO?"
@@ -762,11 +764,6 @@ footer {
   <button class="slider-arrow slider-prev" id="prev">&#8249;</button>
   <button class="slider-arrow slider-next" id="next">&#8250;</button>
 
-  <div class="slider-dots">
-    <div class="dot active" data-i="0"></div>
-    <div class="dot" data-i="1"></div>
-    <div class="dot" data-i="2"></div>
-  </div>
 </section>
 
 <!-- ══════════════════════════════════════
@@ -804,24 +801,7 @@ footer {
   <h3><strong>¿Preparado para tu próximo proyecto? Te asesoramos sobre la mejor solución en excavaciones y demoliciones para tu proyecto.</strong></h3>
 </section>
 
-<!-- ══════════════════════════════════════
-     3 PASOS
-══════════════════════════════════════ -->
-<section class="steps-section">
-  <div class="steps-wrap">
-      <div class="step-img">⚙️</div>
-      <h4>Selección del servicio</h4>
-      <p>Dentro de las múltiples soluciones disponibles, seleccionamos la maquinaria y el equipo que mejor se adapten a las necesidades de su proyecto.</p>
-    </div>
 
-    <div class="step-card">
-      <div class="step-img">🚜</div>
-      <h4>Puesta en marcha</h4>
-      <p>Nos encargamos del desplazamiento de la maquinaria hasta la obra y de la ejecución completa de los trabajos con total garantía y seguridad.</p>
-    </div>
-
-  </div>
-</section>
 
 
 
@@ -871,30 +851,21 @@ footer {
     <h2 class="servicios-title">🏗️ Servicios Principales en Valladolid y Comarca</h2>
     <div class="servicios-grid">
 
-      <!-- Tarjeta 1 -->
+      <!-- Tarjeta 1: Excavaciones + Demoliciones fusionadas -->
       <div class="serv-card">
         <div class="serv-icon">🚜</div>
-        <h3>Movimiento de Tierras y Excavaciones</h3>
-        <p class="serv-intro">Es la base de cualquier proyecto. Ya sea para una vivienda unifamiliar o una nave industrial:</p>
+        <h3>Movimiento de Tierras, Excavaciones y Demoliciones</h3>
+        <p class="serv-intro">La base de cualquier proyecto, desde viviendas unifamiliares hasta naves industriales:</p>
         <ul class="serv-list">
           <li><strong>Vaciados y zanjas:</strong> Para cimentaciones, saneamientos o instalaciones eléctricas.</li>
           <li><strong>Nivelación de parcelas:</strong> Preparación de terrenos agrícolas o urbanos.</li>
           <li><strong>Desbroces:</strong> Limpieza de solares y retirada de maleza.</li>
-        </ul>
-      </div>
-
-      <!-- Tarjeta 2 -->
-      <div class="serv-card">
-        <div class="serv-icon">🔨</div>
-        <h3>Demoliciones Técnicas</h3>
-        <p class="serv-intro">Derribo seguro y profesional con gestión integral de residuos:</p>
-        <ul class="serv-list">
           <li><strong>Demoliciones totales o parciales:</strong> Derribo de edificaciones antiguas, muros o naves.</li>
           <li><strong>Gestión de residuos:</strong> Retirada de escombros a vertederos autorizados, cumpliendo la normativa local.</li>
         </ul>
       </div>
 
-      <!-- Tarjeta 3 -->
+      <!-- Tarjeta 2 -->
       <div class="serv-card">
         <div class="serv-icon">🏊</div>
         <h3>Construcción de Piscinas</h3>
@@ -906,7 +877,7 @@ footer {
         </ul>
       </div>
 
-      <!-- Tarjeta 4 -->
+      <!-- Tarjeta 3 -->
       <div class="serv-card">
         <div class="serv-icon">🧱</div>
         <h3>Albañilería General</h3>
@@ -915,6 +886,19 @@ footer {
           <li><strong>Cerramientos de parcelas:</strong> Muros de bloque, piedra o vallados metálicos.</li>
           <li><strong>Soleras de hormigón:</strong> Impreso o pulido, para garajes y patios.</li>
           <li><strong>Reformas integrales</strong> y rehabilitación de bodegas tradicionales.</li>
+        </ul>
+      </div>
+
+      <!-- Tarjeta 4: Nueva - Alquiler de maquinaria -->
+      <div class="serv-card">
+        <div class="serv-icon">🔑</div>
+        <h3>Alquiler de Maquinaria</h3>
+        <p class="serv-intro">Ponemos a tu disposición nuestra flota de maquinaria para tus obras y proyectos:</p>
+        <ul class="serv-list">
+          <li><strong>Miniexcavadoras:</strong> Ideales para trabajos en espacios reducidos y jardines.</li>
+          <li><strong>Retroexcavadoras:</strong> Para movimientos de tierra de mayor envergadura.</li>
+          <li><strong>Con o sin operario:</strong> Adaptamos el servicio a tus necesidades.</li>
+          <li><strong>Consulta disponibilidad:</strong> <a href="tel:+34607444903" style="color:#c8410a;font-weight:700;">607 444 903</a></li>
         </ul>
       </div>
 
@@ -987,22 +971,27 @@ footer {
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // Slider
 const slides = document.querySelectorAll('.slide');
-const dots   = document.querySelectorAll('.dot');
 let cur = 0, timer;
 
 function goTo(n) {
   slides[cur].classList.remove('active');
-  dots[cur].classList.remove('active');
   cur = (n + slides.length) % slides.length;
   slides[cur].classList.add('active');
-  dots[cur].classList.add('active');
 }
 function autoPlay() { timer = setInterval(() => goTo(cur + 1), 4000); }
 function resetTimer() { clearInterval(timer); autoPlay(); }
 
 document.getElementById('prev').addEventListener('click', () => { goTo(cur-1); resetTimer(); });
 document.getElementById('next').addEventListener('click', () => { goTo(cur+1); resetTimer(); });
-dots.forEach(d => d.addEventListener('click', () => { goTo(+d.dataset.i); resetTimer(); }));
+
+// Swipe táctil para móvil
+let touchStartX = 0;
+document.querySelector('.slider').addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, {passive:true});
+document.querySelector('.slider').addEventListener('touchend', e => {
+  const diff = touchStartX - e.changedTouches[0].clientX;
+  if (Math.abs(diff) > 50) { goTo(diff > 0 ? cur+1 : cur-1); resetTimer(); }
+}, {passive:true});
+
 autoPlay();
 
 // Hamburger
