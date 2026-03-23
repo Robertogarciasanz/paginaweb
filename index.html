@@ -219,11 +219,15 @@ table.ptable tbody td input:focus{
   .btn-actions .btn{width:100%;text-align:center;}
 }
 
+@page {
+  size: A4 portrait;
+  margin: 1cm;
+}
 @media print{
   html,body{margin:0;padding:0;background:#fff;}
   body>*{display:none!important;}
   #pdf-overlay{display:block!important;position:static!important;background:none!important;padding:0!important;overflow:visible!important;}
-  #pdf-modal{border-radius:0!important;padding:1cm!important;max-width:100%!important;box-shadow:none!important;margin:0!important;}
+  #pdf-modal{border-radius:0!important;padding:0!important;max-width:100%!important;box-shadow:none!important;margin:0!important;}
   .pdf-acts{display:none!important;}
 }
 </style>
