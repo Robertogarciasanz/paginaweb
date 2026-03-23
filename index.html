@@ -252,18 +252,6 @@ header {
   letter-spacing: .04em;
 }
 
-/* Slider dots */
-.slider-dots {
-  position:absolute; bottom:18px; left:50%; transform:translateX(-50%);
-  display:flex; gap:8px; z-index:10;
-}
-.dot {
-  width:10px; height:10px; border-radius:50%;
-  background:rgba(255,255,255,.4); cursor:pointer;
-  transition:background .25s;
-}
-.dot.active { background:#c8410a; }
-
 /* Slider arrows */
 .slider-arrow {
   position:absolute; top:50%; transform:translateY(-50%);
@@ -794,12 +782,7 @@ footer {
   </a>
 </div>
 
-<!-- ══════════════════════════════════════
-     ¿PREPARADO?
-══════════════════════════════════════ -->
-<section class="ready-section">
-  <h3><strong>¿Preparado para tu próximo proyecto? Te asesoramos sobre la mejor solución en excavaciones y demoliciones para tu proyecto.</strong></h3>
-</section>
+
 
 
 
@@ -968,7 +951,8 @@ footer {
 <!-- ══════════════════════════════════════
      JAVASCRIPT
 ══════════════════════════════════════ -->
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+<script>
 // Slider
 const slides = document.querySelectorAll('.slide');
 let cur = 0, timer;
@@ -983,6 +967,19 @@ function resetTimer() { clearInterval(timer); autoPlay(); }
 
 document.getElementById('prev').addEventListener('click', () => { goTo(cur-1); resetTimer(); });
 document.getElementById('next').addEventListener('click', () => { goTo(cur+1); resetTimer(); });
+
+// Swipe táctil para móvil
+let touchStartX = 0;
+document.querySelector('.slider').addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, {passive:true});
+document.querySelector('.slider').addEventListener('touchend', e => {
+  const diff = touchStartX - e.changedTouches[0].clientX;
+  if (Math.abs(diff) > 50) { goTo(diff > 0 ? cur+1 : cur-1); resetTimer(); }
+}, {passive:true});
+
+autoPlay();
+</script>
+
+<script>
 
 // Swipe táctil para móvil
 let touchStartX = 0;
