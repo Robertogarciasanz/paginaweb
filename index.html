@@ -7,239 +7,121 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#f8f9fa;--surface:#ffffff;
+  --bg:#f4f4f4;--surface:#ffffff;
   --text:#1a1a1a;--accent:#d84315; /* Naranja corporativo Arturo S.L. */
-  --border:#dddddd;--radius:10px;
+  --border:#dddddd;--radius:12px;
 }
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);scroll-behavior:smooth;}
 
-/* CABECERA */
 header{background:#1a1a1a;color:#fff;padding:20px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100;border-bottom:4px solid var(--accent);}
 header h1{font-size:18px;letter-spacing:1px;}
-.total-header{color:var(--accent);font-weight:bold;font-size:20px;}
 
 main{max-width:900px;margin:20px auto;padding:0 15px;}
 
-/* TABS PRINCIPALES */
-.tabs{display:flex;gap:10px;margin-bottom:20px;}
-.tab{padding:12px 25px;border-radius:30px;border:1px solid var(--border);cursor:pointer;background:#fff;font-weight:bold;transition:0.3s;}
-.tab.active{background:var(--accent);color:#fff;border-color:var(--accent);}
+/* MENÚ DE INICIO: 4 PALABRAS CON VÍNCULO */
+.inicio-nav{display:grid;grid-template-columns:repeat(auto-fit, minmax(180px, 1fr));gap:15px;margin-bottom:30px;}
+.vinculo-card{background:#1a1a1a;color:#fff;padding:25px;text-align:center;border-radius:var(--radius);cursor:pointer;font-weight:bold;text-transform:uppercase;transition:0.3s;border:none;font-size:14px;letter-spacing:1px;}
+.vinculo-card:hover{background:var(--accent);transform:translateY(-3px);box-shadow:0 10px 20px rgba(216,67,21,0.2);}
 
-.card{background:var(--surface);border-radius:var(--radius);padding:25px;margin-bottom:20px;box-shadow:0 4px 12px rgba(0,0,0,0.08);}
-.card-title{font-weight:bold;text-transform:uppercase;color:var(--accent);margin-bottom:20px;font-size:15px;border-left:4px solid var(--accent);padding-left:10px;}
+.card{background:var(--surface);border-radius:var(--radius);padding:25px;margin-bottom:30px;box-shadow:0 4px 15px rgba(0,0,0,0.05);border:1px solid var(--border);}
+.card-title{font-weight:bold;text-transform:uppercase;color:var(--accent);margin-bottom:20px;font-size:16px;border-left:5px solid var(--accent);padding-left:15px;}
 
-/* MENÚ DE VÍNCULOS (SOLO 4 PALABRAS) */
-.nav-links{display:grid;grid-template-columns:repeat(4, 1fr);gap:10px;margin-bottom:25px;}
-.nav-btn{padding:15px;background:#1a1a1a;color:#fff;border-radius:8px;font-size:13px;cursor:pointer;text-align:center;font-weight:bold;transition:0.2s;border:none;}
-.nav-btn:hover{background:var(--accent);transform:translateY(-2px);}
-
-/* TABLA DE LÍNEAS */
-.linea-row{display:grid;grid-template-columns:1fr 80px 100px 100px 40px;gap:10px;align-items:center;padding:12px 0;border-bottom:1px solid #eee;}
-.linea-row input{padding:10px;border:1px solid var(--border);border-radius:6px;width:100%;font-family:inherit;}
-.input-qty{background:#fff8f5;border-color:var(--accent)!important;font-weight:bold;text-align:center;color:var(--accent);}
-
-.btn-main{padding:18px;background:var(--accent);color:#fff;border:none;border-radius:8px;font-weight:bold;cursor:pointer;width:100%;font-size:16px;margin-top:20px;transition:0.2s;}
-.btn-main:hover{background:#bf360c;box-shadow:0 4px 10px rgba(216,67,21,0.3);}
-
-/* PDF MODAL */
-#pdf-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.9);z-index:1000;padding:20px;overflow-y:auto;}
-#pdf-modal{background:#fff;max-width:800px;margin:0 auto;padding:40px;border-radius:5px;}
-
-@media(max-width:600px){
-  .nav-links{grid-template-columns:1fr 1fr;}
-  .linea-row{grid-template-columns:1fr; gap:10px;}
+/* BOTÓN VOLVER ARRIBA */
+#btn-subir {
+  display: none; position: fixed; bottom: 20px; right: 20px; z-index: 99;
+  border: none; outline: none; background-color: var(--accent); color: white;
+  cursor: pointer; padding: 15px; border-radius: 50%; font-size: 18px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3); transition: 0.3s;
 }
+#btn-subir:hover { background-color: #1a1a1a; }
+
+/* TARJETAS DE PRECIOS */
+.tarjeta-precio{margin-bottom:40px;scroll-margin-top:100px; padding: 15px; border: 1px solid #eee; border-radius: 8px;}
+.item-fila{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid #f0f0f0;font-size:14px;}
+.item-fila strong{color:var(--accent);}
+
+/* EDITOR DE PRESUPUESTO */
+.linea-row{display:grid;grid-template-columns:1fr 80px 100px 40px;gap:10px;margin-bottom:10px;align-items:center;}
+.linea-row input{padding:10px;border:1px solid var(--border);border-radius:6px;width:100%;}
+
+#pdf-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.9);z-index:1000;padding:20px;overflow-y:auto;}
+#pdf-modal{background:#fff;max-width:800px;margin:0 auto;padding:40px;border-radius:8px;}
+
+@media(max-width:600px){ .inicio-nav{grid-template-columns:1fr 1fr;} .linea-row{grid-template-columns: 1fr;} }
 </style>
 </head>
-<body>
+<body id="top">
 
 <header>
   <h1>EXCAVACIONES ARTURO S.L.</h1>
-  <div class="total-header" id="header-total">0.00 €</div>
+  <div id="header-total" style="font-weight:bold;color:var(--accent);">0.00 €</div>
 </header>
 
+<button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" id="btn-subir" title="Volver al inicio">↑</button>
+
 <main>
-  <div class="tabs no-print">
-    <div class="tab active" onclick="showTab('nuevo')">Presupuestador</div>
-    <div class="tab" onclick="showTab('precios')">Tarifas y Vínculos</div>
-  </div>
-
-  <div id="tab-nuevo">
-    <div class="card">
-      <div class="card-title">Categorías Principales</div>
-      <div class="nav-links">
-        <button class="nav-btn" onclick="irACat('excavaciones')">EXCAVACIONES</button>
-        <button class="nav-btn" onclick="irACat('piscinas')">PISCINAS</button>
-        <button class="nav-btn" onclick="irACat('albanileria')">ALBAÑILERÍA</button>
-        <button class="nav-btn" onclick="irACat('alquileres')">ALQUILERES</button>
-      </div>
-      
-      <label style="font-size:12px;font-weight:bold;color:#666;">DATOS DEL CLIENTE</label>
-      <input type="text" id="cliente" placeholder="Nombre completo o Empresa" style="width:100%;padding:12px;margin:10px 0 20px 0;border:1px solid #ccc;border-radius:6px;">
-
-      <div style="display:flex;gap:10px;margin-bottom:20px;">
-        <select id="sel-cat" onchange="actualizarDesplegable()" style="flex:1;padding:12px;border-radius:6px;">
-          <option value="">-- Seleccionar Categoría --</option>
-          <option value="excavaciones">Excavaciones</option>
-          <option value="piscinas">Piscinas</option>
-          <option value="albanileria">Albañilería</option>
-          <option value="alquileres">Alquileres</option>
-        </select>
-        <select id="sel-item" style="flex:2;padding:12px;border-radius:6px;"><option value="">Primero elige categoría...</option></select>
-        <button onclick="agregarLinea()" style="padding:0 25px;background:#1a1a1a;color:#fff;border:none;border-radius:6px;cursor:pointer;font-weight:bold;">AÑADIR</button>
-      </div>
-
-      <div id="contenedor-lineas"></div>
-
-      <div style="text-align:right;margin-top:30px;padding-top:15px;border-top:2px solid #eee;">
-        <div style="font-size:18px;color:#666;">Subtotal: <span id="sub-val">0.00 €</span></div>
-        <div style="font-size:28px;font-weight:bold;color:var(--accent);">TOTAL: <span id="tot-val">0.00 €</span></div>
-      </div>
-      <button class="btn-main" onclick="abrirVistaPrevia()">GENERAR PRESUPUESTO FINAL</button>
+  <div class="card">
+    <div class="card-title">Selecciona para ver precios</div>
+    <div class="inicio-nav">
+      <button class="vinculo-card" onclick="irA('excavaciones')">Excavaciones</button>
+      <button class="vinculo-card" onclick="irA('piscinas')">Piscinas</button>
+      <button class="vinculo-card" onclick="irA('albanileria')">Albañilería</button>
+      <button class="vinculo-card" onclick="irA('alquileres')">Alquileres</button>
     </div>
   </div>
 
-  <div id="tab-precios" style="display:none;">
-    <div class="card">
-      <div class="card-title">Tarifario Arturo S.L. (Vínculos Directos)</div>
-      <div id="lista-tarifas"></div>
+  <div class="card">
+    <div class="card-title">Crear Nuevo Presupuesto</div>
+    <input type="text" id="cliente" placeholder="Nombre del Cliente" style="width:100%;padding:12px;margin-bottom:15px;border-radius:6px;border:1px solid #ccc;">
+    
+    <div style="display:flex;gap:10px;margin-bottom:20px;">
+      <select id="sel-cat" onchange="cargarItems()" style="flex:1;padding:10px;border-radius:6px;">
+        <option value="">-- Categoría --</option>
+        <option value="excavaciones">Excavaciones</option>
+        <option value="piscinas">Piscinas</option>
+        <option value="albanileria">Albañilería</option>
+        <option value="alquileres">Alquileres</option>
+      </select>
+      <select id="sel-item" style="flex:2;padding:10px;border-radius:6px;"><option value="">Elige trabajo...</option></select>
     </div>
+    <button onclick="agregarAlPresupuesto()" style="padding:12px;background:#1a1a1a;color:#fff;border:none;border-radius:6px;cursor:pointer;font-weight:bold;width:100%;">+ AÑADIR A LA LISTA</button>
+
+    <div id="lista-presupuesto" style="margin-top:25px;"></div>
+
+    <div style="text-align:right;margin-top:20px;padding-top:15px;border-top:2px solid var(--accent);">
+      <div style="font-size:24px;font-weight:bold;color:var(--accent);">TOTAL: <span id="val-total">0.00 €</span></div>
+      <button onclick="generarDocumento()" style="margin-top:15px;padding:15px;background:var(--accent);color:#fff;border:none;border-radius:6px;cursor:pointer;font-weight:bold;width:100%;">GENERAR PDF PARA CLIENTE</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Tarifas Detalladas</div>
+    <div id="contenedor-tarifas"></div>
   </div>
 </main>
 
 <div id="pdf-overlay">
   <div id="pdf-modal">
-    <div id="pdf-print-area"></div>
-    <div style="margin-top:30px;text-align:right;" class="no-print">
-      <button onclick="document.getElementById('pdf-overlay').style.display='none'" style="padding:10px 20px;cursor:pointer;">Cerrar</button>
-      <button onclick="window.print()" style="padding:10px 20px;background:#1a1a1a;color:#fff;border:none;margin-left:10px;cursor:pointer;font-weight:bold;">IMPRIMIR / GUARDAR</button>
+    <div id="pdf-body"></div>
+    <div style="text-align:right;margin-top:20px;">
+      <button onclick="document.getElementById('pdf-overlay').style.display='none'" style="padding:10px 20px;">Cerrar</button>
+      <button onclick="window.print()" style="padding:10px 20px;background:#1a1a1a;color:#fff;margin-left:10px;cursor:pointer;">Imprimir</button>
     </div>
   </div>
 </div>
 
 <script>
-/* DATOS ACTUALIZADOS */
 const CATALOGO = {
   excavaciones: [
-    {desc:"Excavación de zanjas para cimentación", precio:15.50, unidad:"m³"},
-    {desc:"Excavación en vaciado de tierras", precio:12.00, unidad:"m³"},
-    {desc:"Desmonte de terreno con maquinaria", precio:9.80, unidad:"m³"}
+    {desc:"Excavación de zanjas", precio:15.50, unidad:"m³"},
+    {desc:"Vaciado de tierras", precio:12.00, unidad:"m³"}
   ],
   piscinas: [
-    {desc:"Excavación de vaso de piscina", precio:19.50, unidad:"m³"},
-    {desc:"Gunitado de hormigón para vaso", precio:42.00, unidad:"m²"},
-    {desc:"Suministro de grava filtrante", precio:32.00, unidad:"m³"}
+    {desc:"Excavación vaso piscina", precio:19.50, unidad:"m³"},
+    {desc:"Gunitado de hormigón", precio:42.00, unidad:"m²"}
   ],
   albanileria: [
-    {desc:"Construcción de tabiques (ladrillo)", precio:24.00, unidad:"m²"},
-    {desc:"Raseado de paredes con cemento", precio:16.50, unidad:"m²"},
-    {desc:"Solera de hormigón armado (15cm)", precio:28.00, unidad:"m²"}
+    {desc:"Tabiquería de ladrillo", precio:24.00, unidad:"m²"},
+    {desc:"Solera de hormigón", precio:28.00, unidad:"m²"}
   ],
-  alquileres: [
-    {desc:"Alquiler Retroexcavadora (Día completo)", precio:310.00, unidad:"día"},
-    {desc:"Alquiler Minicargadora (Día completo)", precio:270.00, unidad:"día"},
-    {desc:"Camión Dumper (Servicio por hora)", precio:60.00, unidad:"h"}
-  ]
-};
-
-let presupuesto = [];
-
-function showTab(t){
-  ['nuevo','precios'].forEach(x=>document.getElementById('tab-'+x).style.display=x===t?'block':'none');
-  document.querySelectorAll('.tab').forEach((el,i)=>el.classList.toggle('active', ['nuevo','precios'][i]===t));
-  if(t==='precios') generarTarifas();
-}
-
-/* Sistema de Vínculos */
-function irACat(catId) {
-  showTab('precios');
-  setTimeout(() => {
-    const el = document.getElementById('target-' + catId);
-    if(el) el.scrollIntoView({behavior: 'smooth'});
-  }, 100);
-}
-
-function generarTarifas() {
-  let html = '';
-  for(let cat in CATALOGO) {
-    html += `<div id="target-${cat}" style="margin-bottom:35px; scroll-margin-top:100px;">
-               <h3 style="color:var(--accent); border-bottom:2px solid #1a1a1a; padding-bottom:5px; margin-bottom:15px;">${cat.toUpperCase()}</h3>`;
-    CATALOGO[cat].forEach(item => {
-      html += `<div style="display:flex; justify-content:space-between; padding:10px 0; border-bottom:1px solid #f0f0f0;">
-                 <span>${item.desc}</span><strong>${item.precio.toFixed(2)}€/${item.unidad}</strong>
-               </div>`;
-    });
-    html += `</div>`;
-  }
-  document.getElementById('lista-tarifas').innerHTML = html;
-}
-
-function actualizarDesplegable() {
-  const cat = document.getElementById('sel-cat').value;
-  const sel = document.getElementById('sel-item');
-  sel.innerHTML = '<option value="">-- Elige el trabajo --</option>';
-  if(cat) {
-    CATALOGO[cat].forEach((p,i) => sel.innerHTML += `<option value="${i}">${p.desc} (${p.precio}€)</option>`);
-  }
-}
-
-function agregarLinea() {
-  const cat = document.getElementById('sel-cat').value;
-  const idx = document.getElementById('sel-item').value;
-  if(!cat || idx==="") return;
-  const itm = CATALOGO[cat][idx];
-  presupuesto.push({desc: itm.desc, qty: 1, precio: itm.precio, unidad: itm.unidad});
-  renderPresupuesto();
-}
-
-function renderPresupuesto() {
-  const cont = document.getElementById('contenedor-lineas');
-  cont.innerHTML = presupuesto.map((l,i) => `
-    <div class="linea-row">
-      <input type="text" value="${l.desc}" oninput="presupuesto[${i}].desc=this.value">
-      <input type="number" class="input-qty" value="${l.qty}" oninput="presupuesto[${i}].qty=this.value; calcular()">
-      <span style="font-size:12px;text-align:center;color:#888;">${l.unidad}</span>
-      <input type="number" value="${l.precio}" oninput="presupuesto[${i}].precio=this.value; calcular()">
-      <button onclick="presupuesto.splice(${i},1); renderPresupuesto()" style="background:none;border:none;color:red;cursor:pointer;font-weight:bold;">×</button>
-    </div>
-  `).join('');
-  calcular();
-}
-
-function calcular() {
-  const sub = presupuesto.reduce((s,l) => s + (l.qty * l.precio), 0);
-  const tot = sub * 1.21;
-  document.getElementById('sub-val').innerText = sub.toFixed(2) + " €";
-  document.getElementById('tot-val').innerText = tot.toFixed(2) + " €";
-  document.getElementById('header-total').innerText = tot.toFixed(2) + " €";
-}
-
-function abrirVistaPrevia() {
-  const sub = presupuesto.reduce((s,l) => s + (l.qty * l.precio), 0);
-  let rows = presupuesto.map(l => `<tr><td style="padding:10px;border:1px solid #eee;">${l.desc}</td><td align="center">${l.qty}</td><td align="right">${l.precio.toFixed(2)}€</td><td align="right"><strong>${(l.qty*l.precio).toFixed(2)}€</strong></td></tr>`).join('');
-  
-  document.getElementById('pdf-print-area').innerHTML = `
-    <div style="font-family:sans-serif;">
-      <div style="display:flex; justify-content:space-between; border-bottom:4px solid #d84315; padding-bottom:15px; margin-bottom:20px;">
-        <h2 style="margin:0;">EXCAVACIONES ARTURO S.L.</h2>
-        <div style="text-align:right">FECHA: ${new Date().toLocaleDateString()}</div>
-      </div>
-      <p><strong>CLIENTE:</strong> ${document.getElementById('cliente').value || '---'}</p>
-      <table width="100%" cellspacing="0" style="margin:20px 0; border:1px solid #eee;">
-        <tr bgcolor="#1a1a1a" style="color:#fff;">
-          <th style="padding:10px;">Descripción</th><th>Cant.</th><th>Precio</th><th>Total</th>
-        </tr>
-        ${rows}
-      </table>
-      <div style="text-align:right; font-size:18px; margin-top:20px;">
-        <p>Subtotal: ${sub.toFixed(2)}€</p>
-        <p style="color:#d84315; font-size:24px;"><strong>TOTAL (IVA INC.): ${(sub*1.21).toFixed(2)}€</strong></p>
-      </div>
-    </div>
-  `;
-  document.getElementById('pdf-overlay').style.display='block';
-}
-</script>
-</body>
-</html>
